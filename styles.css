@@ -18,7 +18,7 @@ body {
 }
 
 #animate-image.animate {
-    transform: scale(2, 1.2) rotate(720deg);
+    transform: scale(2, 1.2) rotate(2turn);
 }
 
 #random-numbers {
