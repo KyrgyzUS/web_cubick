@@ -18,16 +18,15 @@ body {
 }
 
 #animate-image.animate {
-    transform: scale(2, 1.2) rotate(2turn);;
+    transform: scale(1.2);
 }
 
-#random-number {
+#random-numbers {
     margin-top: 20px;
-    font-size: 40px;
+    font-size: 24px;
     font-weight: bold;
 }
-#random-number2 {
-    margin-top: 30px;
-    font-size: 40px;
-    font-weight: bold;
+
+#random-numbers span {
+    margin: 0 10px;
 }
