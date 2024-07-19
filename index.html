@@ -13,27 +13,52 @@
             <span id="random-number1"></span>
             <span id="random-number2"></span>
         </div>
+        <input type="hidden" id="user_name">
+        <input type="hidden" id="random-number1-value">
+        <input type="hidden" id="random-number2-value">
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="script.js"></script>
     <script>
-            let tg = window.Telegram.WebApp;
-            tg.expand();
-       		animate-image.addEventListener("click", () => {
-            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
-			let name = document.getElementById("user_name").value;
-			let n1 = document.getElementById("random-number1").value;
-			let n2 = document.getElementById("random-number2").value;
-			}
-			let data = {
-				name: name,
-				n1: r1,
-				n2: r2
-			}
-			tg.sendData(JSON.stringify(data))
+        document.addEventListener('DOMContentLoaded', function() {
+            const image = document.getElementById('animate-image');
+            const randomNumber1 = document.getElementById('random-number1');
+            const randomNumber2 = document.getElementById('random-number2');
 
-			tg.close();
-		});
+            image.addEventListener('click', function() {
+                // Запуск анимации
+                image.classList.add('animate');
+                
+                // Удаление анимации через 0.5 секунды (время совпадает с transition в CSS)
+                setTimeout(() => {
+                    image.classList.remove('animate');
+                }, 500);
+
+                // Генерация двух случайных чисел от 1 до 6
+                const number1 = Math.floor(Math.random() * 6) + 1;
+                const number2 = Math.floor(Math.random() * 6) + 1;
+                randomNumber1.textContent = number1;
+                randomNumber2.textContent = number2;
+
+                // Установка значений для скрытых полей
+                document.getElementById('random-number1-value').value = number1;
+                document.getElementById('random-number2-value').value = number2;
+
+                let tg = window.Telegram.WebApp;
+                tg.expand();
+                document.getElementById('user_name').value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
+                let name = document.getElementById('user_name').value;
+                let n1 = document.getElementById('random-number1-value').value;
+                let n2 = document.getElementById('random-number2-value').value;
+
+                let data = {
+                    name: name,
+                    n1: n1,
+                    n2: n2
+                }
+                tg.sendData(JSON.stringify(data));
+                tg.close();
+            });
+        });
     </script>
 </body>
 </html>
