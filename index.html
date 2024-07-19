@@ -23,6 +23,7 @@
             const image = document.getElementById('animate-image');
             const randomNumber1 = document.getElementById('random-number1');
             const randomNumber2 = document.getElementById('random-number2');
+            const tg = window.Telegram.WebApp;
 
             image.addEventListener('click', function() {
                 // Запуск анимации
@@ -43,19 +44,22 @@
                 document.getElementById('random-number1-value').value = number1;
                 document.getElementById('random-number2-value').value = number2;
 
-                let tg = window.Telegram.WebApp;
+                // Получение данных пользователя из Telegram
                 tg.expand();
-                document.getElementById('user_name').value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
-                let name = document.getElementById('user_name').value;
-                let n1 = document.getElementById('random-number1-value').value;
-                let n2 = document.getElementById('random-number2-value').value;
+                const userName = tg.initDataUnsafe.user ? (tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name) : "Unknown User";
+                document.getElementById('user_name').value = userName;
 
-                let data = {
-                    name: name,
-                    n1: n1,
-                    n2: n2
+                // Создание объекта с данными
+                const data = {
+                    name: userName,
+                    n1: number1,
+                    n2: number2
                 }
+
+                // Отправка данных в Telegram
                 tg.sendData(JSON.stringify(data));
+
+                // Закрытие веб-приложения
                 tg.close();
             });
         });
