@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const image = document.getElementById('animate-image');
-    const randomNumberDiv = document.getElementById('random-number');
-    const randomNumber2Div = document.getElementById('random-number2');
+    const randomNumber1 = document.getElementById('random-number1');
+    const randomNumber2 = document.getElementById('random-number2');
 
     image.addEventListener('click', function() {
         // Запуск анимации
@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
             image.classList.remove('animate');
         }, 500);
 
-        // Генерация случайного числа от 1 до 12
-        const randomNumber = Math.floor(Math.random() * 6) + 1;
-        randomNumberDiv.textContent = randomNumber;
-        const randomNumber2 = Math.floor(Math.random() * 6) + 1;
-        randomNumberDiv.textContent = randomNumber;
+        // Генерация двух случайных чисел от 1 до 6
+        const number1 = Math.floor(Math.random() * 6) + 1;
+        const number2 = Math.floor(Math.random() * 6) + 1;
+        randomNumber1.textContent = number1;
+        randomNumber2.textContent = number2;
     });
 });
