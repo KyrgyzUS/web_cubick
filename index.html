@@ -43,8 +43,10 @@
                 
 
                 // Установка значений для скрытых полей
+                setTimeout(() => {
                 document.getElementById('random-number1-value').value = number1;
                 document.getElementById('random-number2-value').value = number2;
+                }, 700);
 
                 // Получение данных пользователя из Telegram
                 tg.expand();
