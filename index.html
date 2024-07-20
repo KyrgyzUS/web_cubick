@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <img id="animate-image" src="free-animated-icon-dice-16122053.png" alt="Image to Animate">
+        <img id="animate-image" src="free-animated-icon-dice-16122053.png" alt="Image to Animate" style="cursor: pointer;">
         <div id="random-numbers">
             <span id="random-number1"></span>
             <span id="random-number2"></span>
@@ -21,17 +21,19 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const image = document.getElementById('animate-image');
-            const image2 = document.getElementById('animate-image');
             const randomNumber1 = document.getElementById('random-number1');
             const randomNumber2 = document.getElementById('random-number2');
             let tg = window.Telegram.WebApp;
 
-            image.addEventListener('click', function() {
-                if (clicked) return; // Проверка флага
+            // Флаг для проверки использования кнопки
+            let buttonUsed = false;
 
-                // Установка флага в true после первого нажатия
-                clicked = true;
-                                                        
+            image.addEventListener('click', function() {
+                // Проверка, использовалась ли кнопка
+                if (buttonUsed) return;
+                
+                buttonUsed = true; // Устанавливаем флаг
+
                 // Запуск анимации
                 image.classList.add('animate');
                 
@@ -41,17 +43,15 @@
                 }, 200);
 
                 // Генерация двух случайных чисел от 1 до 6
-                
                 const number1 = Math.floor(Math.random() * 6) + 1;
                 const number2 = Math.floor(Math.random() * 6) + 1;
                 randomNumber1.textContent = number1;
                 randomNumber2.textContent = number2;
                 
-
                 // Установка значений для скрытых полей
                 setTimeout(() => {
-                document.getElementById('random-number1-value').value = number1;
-                document.getElementById('random-number2-value').value = number2;
+                    document.getElementById('random-number1-value').value = number1;
+                    document.getElementById('random-number2-value').value = number2;
                 }, 700);
 
                 // Получение данных пользователя из Telegram
@@ -64,17 +64,14 @@
                     name: userName,
                     n1: number1,
                     n2: number2
-                }
-                
-
-
+                };
 
                 // Закрытие веб-приложения через 2 секунды
                 setTimeout(() => {
                     // Отправка данных в Telegram
                     tg.sendData(JSON.stringify(data));
                     tg.close();
-                }, 3000); // 5000 миллисекунд = 2 секунды
+                }, 3000); // 3000 миллисекунд = 3 секунды
             });
         });
     </script>
