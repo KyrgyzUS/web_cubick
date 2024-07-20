@@ -35,10 +35,12 @@
                 }, 500);
 
                 // Генерация двух случайных чисел от 1 до 6
+                setTimeout(() => {
                 const number1 = Math.floor(Math.random() * 6) + 1;
                 const number2 = Math.floor(Math.random() * 6) + 1;
                 randomNumber1.textContent = number1;
                 randomNumber2.textContent = number2;
+                }, 500);
 
                 // Установка значений для скрытых полей
                 document.getElementById('random-number1-value').value = number1;
